@@ -1,0 +1,69 @@
+/* Mariyam Foods: generated from design-system/tokens.json. Do not edit by hand. */
+:root, [data-theme="night"] {
+  color-scheme: dark;
+  --bg: #06130c;
+  --surface-1: #0b1f14;
+  --surface-2: #11291b;
+  --surface-3: #183524;
+  --glass: #10291bb8;
+  --ink: #f6eed8;
+  --ink-muted: #adbba6;
+  --line: #f6eed81f;
+  --line-strong: #f6eed85c;
+  --accent: #f6b52e;
+  --turmeric: #f6b52e;
+  --marigold: #ffd36b;
+  --amber: #e8860f;
+  --caramel: #8e4d10;
+  --forest: #0f4a18;
+  --on-turmeric: #1a1204;
+  --fresh: #6fd08c;
+  --alert: #ff9a7a;
+  --shadow-card: 0 24px 60px -30px rgba(0,0,0,0.8);
+  --shadow-float: 0 30px 80px -20px rgba(0,0,0,0.75);
+  --glow-gold: 0 10px 40px -8px rgba(246,181,46,0.55);
+}
+[data-theme="ivory"] {
+  color-scheme: light;
+  --bg: #fbf5e6;
+  --surface-1: #fffbf0;
+  --surface-2: #f5ecd6;
+  --surface-3: #ebdfc2;
+  --glass: #fffbf0cc;
+  --ink: #10301b;
+  --ink-muted: #4c5d4b;
+  --line: #10301b1f;
+  --line-strong: #10301b70;
+  --accent: #9a5507;
+  --turmeric: #f6b52e;
+  --marigold: #ffd36b;
+  --amber: #e8860f;
+  --caramel: #8e4d10;
+  --forest: #0f4a18;
+  --on-turmeric: #1a1204;
+  --fresh: #1b7a3d;
+  --alert: #b23a12;
+  --shadow-card: 0 24px 50px -32px rgba(60,40,10,0.35);
+  --shadow-float: 0 30px 70px -24px rgba(60,40,10,0.35);
+  --glow-gold: 0 10px 40px -8px rgba(246,181,46,0.55);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+  --space-9: 120px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+  --font-display: Gloock, "Times New Roman", serif;
+  --font-accent: "Instrument Serif", Georgia, serif;
+  --font-sans: Figtree, system-ui, "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Consolas, monospace;
+}
