@@ -43,7 +43,10 @@
       });
     });
   }
-  const art = (id, alt, cls = "") => `<img class="snack ${cls}" data-snack="${id}" alt="${esc(alt)}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">`;
+  // Snacks are static photography. Only the keepsake tin is still rendered in 3D.
+  const art = (id, alt, cls = "") => id === "tin"
+    ? `<img class="snack ${cls}" data-snack="tin" alt="${esc(alt)}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">`
+    : `<img class="snack is-ready ${cls}" src="assets/products/${id}.webp" alt="${esc(alt)}" decoding="async">`;
   const heatDots = (n) => n ? `<span class="heat" aria-label="Heat ${n} of 3">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>` : "";
 
   /* ---------- cards ---------- */
@@ -155,8 +158,7 @@
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__stage" aria-hidden="true">
         <svg class="hero__arch" viewBox="0 0 600 720" fill="none"><path d="M300 12c14 44 62 62 96 88 16 12 20 34 38 44 30 16 66 34 86 66 16 26 2 56 12 84 16 44 50 84 44 136-8 80-74 170-156 216-40 22-80 44-120 62-40-18-80-40-120-62C98 600 32 510 24 430c-6-52 28-92 44-136 10-28-4-58 12-84 20-32 56-50 86-66 18-10 22-32 38-44 34-26 82-44 96-88Z"/></svg>
-        <canvas id="heroCanvas"></canvas>
-        <img class="hero__fallback" src="assets/brand/emblem.png" alt="" hidden>
+        <img class="hero__art" src="assets/products/home-hero.webp" alt="" width="1080" height="800" fetchpriority="high">
       </div>
       <div class="hero__copy">
         <p class="mf-eyebrow">Homemade traditional snacks</p>
@@ -250,11 +252,6 @@
       </div>
     </section>`;
     hydrateArt(main);
-    const cv = $("#heroCanvas");
-    if (window.MF3D && window.MF3D.ok) {
-      try { const h = window.MF3D.mountHero(cv); onLeave(() => h.destroy()); }
-      catch (e) { console.warn(e); cv.hidden = true; $(".hero__fallback").hidden = false; }
-    } else { cv.hidden = true; $(".hero__fallback").hidden = false; }
   }
 
   /* ---------- SHOP ---------- */
@@ -301,6 +298,7 @@
     const p = byId(id);
     if (!p) return notFound();
     let pack = "250", qty = 1;
+    const is3d = p.id === "tin"; // the tin is the only product still shown as a 3D model
     const priceNow = () => (p.fixedPack ? p.price : p.price * PACKS.find((x) => x.id === pack).mult) * qty;
     const related = P.filter((x) => x.id !== p.id && x.cat === p.cat).slice(0, 3);
     const fill = related.length < 3 ? P.filter((x) => x.id !== p.id && x.cat !== p.cat).slice(0, 3 - related.length) : [];
@@ -308,9 +306,10 @@
       <div class="band__in pdp">
         <div class="pdp__stage">
           <div class="pdp__halo" aria-hidden="true"></div>
-          <canvas id="viewer" tabindex="0" role="img" aria-label="${esc(p.name)}, 3D model. Drag or use arrow keys to rotate."></canvas>
+          ${is3d ? `<canvas id="viewer" tabindex="0" role="img" aria-label="${esc(p.name)}, 3D model. Drag or use arrow keys to rotate."></canvas>
           <div class="pdp__fallback" hidden>${art(p.id, p.name)}</div>
-          <p class="pdp__hint"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12c0-2.5 4-4.5 9-4.5s9 2 9 4.5-4 4.5-9 4.5"/><path d="m9 13.5 3 3-3 3"/></svg>Drag to spin</p>
+          <p class="pdp__hint"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12c0-2.5 4-4.5 9-4.5s9 2 9 4.5-4 4.5-9 4.5"/><path d="m9 13.5 3 3-3 3"/></svg>Drag to spin</p>`
+          : `<div class="pdp__fallback">${art(p.id, p.name)}</div>`}
         </div>
         <div class="pdp__info">
           <a class="crumb" href="#/shop/${p.cat}">← ${p.cat === "gift" ? "Gifts" : p.cat[0].toUpperCase() + p.cat.slice(1)}</a>
@@ -347,6 +346,7 @@
     $("#qPlus").onclick = () => { qty = Math.min(20, qty + 1); updatePrice(); };
     $("#addBtn").onclick = () => { addLine({ id: p.id, pack: p.fixedPack ? "fixed" : pack }, qty); openDrawer(true); };
     hydrateArt(main);
+    if (!is3d) return;
     if (window.MF3D && window.MF3D.ok) {
       try { const v = window.MF3D.mountViewer($("#viewer"), p.id); onLeave(() => v.destroy()); }
       catch (e) { console.warn(e); $("#viewer").hidden = true; $(".pdp__fallback").hidden = false; $(".pdp__hint").hidden = true; }

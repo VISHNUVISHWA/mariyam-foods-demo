@@ -68,8 +68,7 @@ main { outline: 0; min-height: 70vh; }
 .hero__stage { position: absolute; z-index: -1; top: 56px; bottom: 0; right: max(-40px, calc((100vw - 1500px) / 2)); width: min(62vw, 900px); display: grid; place-items: center; }
 .hero__arch { position: absolute; height: 84%; width: auto; max-width: 92%; }
 .hero__arch path { stroke: var(--turmeric); stroke-width: 1.4; filter: drop-shadow(0 0 14px rgba(246, 181, 46, .75)); opacity: .9; }
-#heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero__fallback { width: 62%; }
+.hero__art { position: relative; width: 100%; height: auto; }
 .hero__copy { display: grid; gap: var(--space-5); max-width: 620px; }
 .hero h1 { font: 400 clamp(46px, 6.7vw, 92px)/.98 var(--font-display); letter-spacing: -.01em; }
 .hero h1 em, .tinband h2 em {
@@ -167,6 +166,7 @@ main { outline: 0; min-height: 70vh; }
 .pdp__halo { position: absolute; inset: 14%; border-radius: 50%; border: 1px solid var(--turmeric); opacity: .45; box-shadow: 0 0 34px rgba(246,181,46,.25), inset 0 0 34px rgba(246,181,46,.15); }
 #viewer { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: pan-y; }
 .pdp__fallback { position: absolute; inset: 10%; display: grid; place-items: center; }
+.pdp__fallback img { width: 100%; height: 100%; object-fit: contain; }
 .pdp__hint { position: absolute; left: 50%; bottom: var(--space-4); transform: translateX(-50%); display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: var(--radius-pill); background: var(--glass); font: 500 12px/1 var(--font-mono); pointer-events: none; }
 .pdp__info { display: grid; gap: var(--space-5); min-width: 0; }
 .crumb { font: 500 13px/1 var(--font-mono); color: var(--ink-muted); text-decoration: none; }

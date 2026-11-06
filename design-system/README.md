@@ -4,7 +4,7 @@ Homemade traditional snacks, made by hand in small batches. This system takes th
 
 ## Brand idea
 
-**Traditional hands, futuristic care.** The recipes are old. The way we show them is new: live batch tracking, snacks you can spin in 3D, and a store that tells you exactly when your murukku was fried.
+**Traditional hands, futuristic care.** The recipes are old. The way we show them is new: live batch tracking, photography of every snack, and a store that tells you exactly when your murukku was fried.
 
 ## Content fundamentals
 
@@ -27,9 +27,9 @@ Write the way a confident home cook talks. Short sentences, plain words, real de
 
 **Depth.** Glass (`glass` plus backdrop blur) is reserved for things floating above the page: the nav, the cart drawer and search. Page-level surfaces stay opaque.
 
-**Motion.** Slow float and spin on snacks. Cards lift 4px with a soft gold spotlight that follows the cursor. Everything respects `prefers-reduced-motion`.
+**Motion.** Cards lift 4px with a soft gold spotlight that follows the cursor. Everything respects `prefers-reduced-motion`.
 
-**Food imagery.** Snacks always sit on transparent ground with warm top-left light and no props. Real photography should keep that treatment when it replaces the demo's 3D renders.
+**Food imagery.** Snacks always sit on transparent ground with warm top-left light and no props. Snack photography lives in `assets/products/` as 720 × 720 transparent WebP, named after the product id.
 
 ## Iconography
 
@@ -48,7 +48,7 @@ Keep clear space equal to the height of the leaf around the logo. Do not recolou
 ## Signature patterns
 
 - **Freshness meter.** Every product shows its batch code, frying date and remaining freshness.
-- **360 product stage.** A draggable 3D snack on a glowing ring.
+- **Product stage.** A snack photo on a glowing ring. The Festival Tin keeps its draggable 3D model.
 - **Build a tin.** Four slots, live price and a full-tin saving.
 
 ## Accessibility
