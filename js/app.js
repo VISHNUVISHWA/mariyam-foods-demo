@@ -593,9 +593,9 @@
   const setTheme = (t) => {
     document.documentElement.dataset.theme = t;
     $("#themeBtn").setAttribute("aria-label", t === "night" ? "Switch to ivory theme" : "Switch to night theme");
-    store.set("theme", t);
+    store.set("theme-v2", t); // new key so earlier visitors, who had "night" saved by default, get the light default
   };
-  setTheme(store.get("theme", "night"));
+  setTheme(store.get("theme-v2", "ivory"));
   $("#themeBtn").onclick = () => setTheme(document.documentElement.dataset.theme === "night" ? "ivory" : "night");
 
   // search
